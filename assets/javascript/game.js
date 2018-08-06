@@ -4,6 +4,7 @@ var guessesLeft = 10;
 var badLettersArray = [];
 var wordList = ["monkey","scumm","banana","pirate","ghost","sword","grog","island","curse","guybrush","acetone","ship","sail","skeleton","skull","accounting","mansion","meat","fish","seagull","cannibal","voodoo","prisoner","voyage","sheriff","prosthetic","rubber","chicken"]
 var music = new Audio("assets/audio/05 - Following The Shop Keeper.mp3");
+music.loop = true;
 var yesSound = new Audio("assets/audio/sfx_coin_double1.m4a");
 var noSound = new Audio("assets/audio/sfx_exp_various3.m4a");
 var winSound = new Audio("assets/audio/sfx_sounds_fanfare3.m4a");
@@ -38,6 +39,8 @@ document.onkeydown = function(event) {
         badLettersArray.push(keyPressed);
         guessesLeft--;
         if (guessesLeft > 0){
+            noSound.pause();
+            noSound.currentTime = 0;
             noSound.play();
         };
     }
@@ -50,6 +53,8 @@ document.onkeydown = function(event) {
             };
         };
         if (workingWord.indexOf("_") >= 0){
+            yesSound.pause();
+            yesSound.currentTime = 0;
             yesSound.play();
         };
     };
